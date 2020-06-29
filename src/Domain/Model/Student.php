@@ -5,8 +5,8 @@ namespace Alura\Pdo\Domain\Model;
 #Esta classe Student não é uma classe anêmica porque
 #contém regras de negócio. Também é uma classe que está 
 #usando o padrão Entity, isso porque ela possui um 
-#identificardor que faz com que ele seja persistivel,
-#o identificador neste caso da classe Student é o id
+#identificador que neste caso é o atributo $id 
+#que faz com que ela seja persistivel,
 class Student
 {
     #O sinal de interrogação significa que o
@@ -18,6 +18,8 @@ class Student
     /** @var Phone[] */
     private array $phones = [];
 
+    #Ao usarmos a classe como tipo de um atributo, estamos a fazer uso do padrão
+    #injeção de dependçencia
     public function __construct(?int $id, string $name, \DateTimeInterface $birthDate)
     {
         $this->id = $id;

@@ -1,10 +1,10 @@
-CREATE  TABLE  IF NOT  EXISTS  students(
+CREATE  TABLE  IF NOT  EXISTS  students (
     id INTEGER PRIMARY  KEY AUTO_INCREMENT,
     name VARCHAR(128),
     birth_date DATE
 );
 
-CREATE  TABLE  IF NOT  EXISTS  phones(
+CREATE  TABLE  IF NOT  EXISTS  phones (
     id INTEGER PRIMARY  KEY,
     area_code CHAR(2),
     number CHAR(9),

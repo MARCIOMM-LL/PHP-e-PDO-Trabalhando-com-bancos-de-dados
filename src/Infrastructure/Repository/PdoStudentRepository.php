@@ -7,7 +7,7 @@ use Alura\Pdo\Domain\Model\Student;
 use Alura\Pdo\Domain\Repository\StudentRepository;
 
 #O processo de extrair toda a lógica de acesso ao
-#repositório/dados do nosso domínio é um padrão chamado
+#repositório/bancodados do nosso domínio é um padrão chamado
 #de Repository. Um repositório nada mais é do que uma classe
 #que permite o acesso aos nossos dados, independentemente
 #de onde eles estejam em forma de coleção. As formas de nomear
@@ -46,7 +46,7 @@ class PdoStudentRepository implements StudentRepository
 
     #O conceito de hydrate é um padrão que traz dados
     #de uma camada para outra, aqui no caso estamos
-    #trazendo do banco para o nosso negócio
+    #trazendo do banco para o nosso regra de negócio
     public function hydrateStudentList(\PDOStatement $stmt): array
     {
         $studentDataList = $stmt->fetchAll();
@@ -90,7 +90,7 @@ class PdoStudentRepository implements StudentRepository
         return $success;
     }
 
-    public function update(Student $student)
+    public function update(Student $student): bool
     {
         $updateQuery = 'UPDATE students SET name = :name, birth_date = :birth_date WHERE id = :id;';
         $stmt = $this->connection->prepare($updateQuery);
@@ -121,6 +121,7 @@ class PdoStudentRepository implements StudentRepository
                        JOIN phones ON students.id = phones.student_id;';
         $stmt = $this->connection->query($sqlQuery);
         $result = $stmt->fetchAll();
+        
         $studentList = [];
 
         foreach ($result as $row) {
